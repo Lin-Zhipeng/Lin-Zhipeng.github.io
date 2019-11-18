@@ -281,6 +281,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/13/Python特性(一)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhipeng Lin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lin-Zhipeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/13/Python特性(一)/" itemprop="url">Python整洁之道</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-13T21:59:53+08:00">
+                2019-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="断言-assert-使用"><a href="#断言-assert-使用" class="headerlink" title="断言 assert 使用"></a>断言 assert 使用</h1><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p> 使用在线商城的打折券为例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apply_discount</span><span class="params">(product,discount)</span>:</span></span><br><span class="line">   price = int(product[<span class="string">"price"</span>] * (<span class="number">1.0</span> - discount))</span><br><span class="line">   <span class="keyword">assert</span> <span class="number">0</span> &lt;= price &lt;= product[<span class="string">"price"</span>]</span><br><span class="line">   <span class="keyword">return</span> price</span><br></pre></td></tr></table></figure>
+
+<p>下边创建一个实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>shoes = &#123;<span class="string">'name'</span>: <span class="string">"Fancy shoes"</span> , <span class="string">"price"</span>: <span class="number">13000</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>apply_discount(shoes,<span class="number">0.2</span>) <span class="comment"># 通过 10400</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>apply_discount(shoes,<span class="number">2</span>) <span class="comment"># 报错</span></span><br></pre></td></tr></table></figure>
+
+<p>报错信息指向：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">AssertionError:</span><br><span class="line">----&gt; 3    assert 0 &lt;= price &lt;= product[&quot;price&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>故使用断言验证失败具体位置，便于异常回溯。<br>断言是告诉coder程序中出现了<strong>不可恢复</strong>的错误，对于可以预测的错误（eg没有找到文件）不适用于断言。<br>断言是程序<strong>内部自检</strong>，用于处理程序中不可能出现的条件，一旦不符合条件，就影响到后边的运算的正确性，所有断言是辅助调试工具。</p>
+<h2 id="断言语法"><a href="#断言语法" class="headerlink" title="断言语法"></a>断言语法</h2><p>assert 语句的语法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert_stmt ::= <span class="string">"assert"</span> expression1 [<span class="string">","</span> expression2]</span><br></pre></td></tr></table></figure>
+
+<p>其中expression1 是需要测试的条件，可选的expression2是错误信息。如果断言失败就会显示这个错误信息。<br>在Python解释器中相当于：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> _debug__:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> expression1:</span><br><span class="line">        <span class="keyword">raise</span> AssertionError(expression2)</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> cond == <span class="string">"x"</span>:</span><br><span class="line">        do_X()</span><br><span class="line">    <span class="keyword">elif</span> cond == <span class="string">"y"</span>:</span><br><span class="line">        do_Y()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">assert</span> <span class="literal">False</span>, (</span><br><span class="line">            <span class="string">'这种情况一般不会出现,但偶尔会出现'</span>,</span><br><span class="line">            <span class="string">'每次debug就不会出现这种情况了'</span>,</span><br><span class="line">            <span class="string">'我也不知道原因，你可以给我发邮件'</span>,</span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>断言会给程序带来安全风险和bug</li>
+<li>容易形成语法怪癖，容易写出很多<strong>无用</strong>的断言。</li>
+</ol>
+<h3 id="不用断言验证数据"><a href="#不用断言验证数据" class="headerlink" title="不用断言验证数据"></a>不用断言验证数据</h3><p>如果命令行使用 <code>-O</code> 或者 <code>-OO</code>标识，或者修改了CPython的 <code>PYTHONOPTIMIZE</code>环境变量，就会全局禁用断言。<br>如果用于判断管理员的断言被屏蔽，普通用户就有了管理员的权限。<br>如果禁用断言引发了较大的错误，那么可能被其他人利用发起DoS攻击。<br>可以使用<code>if</code>语句来代替此类断言</p>
+<h3 id="不要用元组做断言条件"><a href="#不要用元组做断言条件" class="headerlink" title="不要用元组做断言条件"></a>不要用元组做断言条件</h3><p>元组作为assert的<code>expression1</code>的时候，断言总是真的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span>(<span class="number">1</span>==<span class="number">2</span>,<span class="string">"This shold fail"</span>) <span class="comment"># Always True</span></span><br></pre></td></tr></table></figure>
+
+<p>因为Python中非空元组总是真值。<br>有些错误更不容易被发现。如下例，不知不觉就用到了元组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span>(</span><br><span class="line">    counter == <span class="number">10</span>,</span><br><span class="line">    <span class="string">"It also always true."</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<h2 id="Python断言总结"><a href="#Python断言总结" class="headerlink" title="Python断言总结"></a>Python断言总结</h2><p>断言是强大的调试工具，了解断言可以更好的维护和调试Python代码。</p>
+<h2 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h2><ul>
+<li>Python断言是一种测试某个条件的调试辅助功能，用于程序的内部自检。</li>
+<li>断言应该用于帮助开发者识别bug，不是用于处理运行时的错误的机制。</li>
+<li>设置解释器可以全局禁用断言。</li>
+</ul>
+<h1 id="逗号的使用"><a href="#逗号的使用" class="headerlink" title="逗号的使用"></a>逗号的使用</h1><p>在Python的列表、字典或者集合常量中添加或者移除项，记得在所有行后边加一个逗号。<br>eg：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>names = [</span><br><span class="line">        <span class="string">"Alice"</span>,</span><br><span class="line">        <span class="string">"Bob"</span>,</span><br><span class="line">        <span class="string">"Dog"</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p>这里在<code>Dog</code>后边加上逗号比较好，这样如果在代码编辑的时候在后边加元素就不容易漏掉逗号了。否则就会有比较大的错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>names = [</span><br><span class="line">        <span class="string">"Alice"</span>,</span><br><span class="line">        <span class="string">"Bob"</span>,</span><br><span class="line">        <span class="string">"Dog"</span></span><br><span class="line">        <span class="string">"Kitty"</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<p>看起来是四个元素，但是由于<code>字符串字面值拼接</code>的原因，缺少了逗号后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; names </span><br><span class="line">[&apos;Alice&apos;, &apos;Bob&apos;, &apos;DogKitty&apos;]</span><br></pre></td></tr></table></figure>
+
+<p>后边两个拼接起来了，字符串拼接是一个特性。<strong>“以空白字符分隔多个相连的字符串或byte字面值，即使他们各自使用不同的引号，也会执行拼接操作。”</strong><br>字符串字面值拼接主要用于在跨越多行的长字符串之间可以省去反斜杠。那么在Python列表，字典，集合的最后一项后边也加上逗号就解决了。<br>最后效果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>names = [</span><br><span class="line">        <span class="string">"Alice"</span>,</span><br><span class="line">        <span class="string">"Bob"</span>,</span><br><span class="line">        <span class="string">"Dog"</span>,</span><br><span class="line">        <span class="string">"Kitty"</span>,</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+
+<h2 id="关键点-1"><a href="#关键点-1" class="headerlink" title="关键点"></a>关键点</h2><ul>
+<li>合理的逗号放置可以让列表、字典和集合更容易维护。</li>
+<li>Pyton的字符串字面拼接特性即可能带来帮助，也会引发难以发现的bug。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/Leetcode-39/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -717,7 +886,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -728,7 +897,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -739,7 +908,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Lin, NexT">
+  <meta name="keywords" content="Python,类,对象,namedtuple,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lin-Zhipeng&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+<meta name="description" content="对象比较：is 与 ==id()（也就是内存地址）相同就可以is    当两个变量指向同一个对象即id相同时，is 表达式的结果为True    当各变量指向的对象含有相同内容时，==表达式的结果为True。  字符串转换待续">
+<meta name="keywords" content="Python,类,对象,namedtuple">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类和面向对象">
+<meta property="og:url" content="http://yoursite.com/2020/05/18/Python_Feature_3/index.html">
 <meta property="og:site_name" content="Lin-Zhipeng&#39;s Blog">
+<meta property="og:description" content="对象比较：is 与 ==id()（也就是内存地址）相同就可以is    当两个变量指向同一个对象即id相同时，is 表达式的结果为True    当各变量指向的对象含有相同内容时，==表达式的结果为True。  字符串转换待续">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-05-18T09:21:16.557Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lin-Zhipeng&#39;s Blog">
+<meta name="twitter:title" content="类和面向对象">
+<meta name="twitter:description" content="对象比较：is 与 ==id()（也就是内存地址）相同就可以is    当两个变量指向同一个对象即id相同时，is 表达式的结果为True    当各变量指向的对象含有相同内容时，==表达式的结果为True。  字符串转换待续">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2019/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/18/Python_Feature_3/">
 
 
 
 
 
-  <title>Archive | Lin-Zhipeng's Blog</title>
+  <title>类和面向对象 | Lin-Zhipeng's Blog</title>
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,212 +271,172 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/18/Python_Feature_3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhipeng Lin">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lin-Zhipeng's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">类和面向对象</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-18T17:06:00+08:00">
+                2020-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 6 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/18/Python_Feature_3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2020/05/18/Python_Feature_3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/13/Python_Feature_1/" itemprop="url">
-              
-                <span itemprop="name">Python整洁之道</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-13T21:59:53+08:00" content="2019-11-13">
-          11-13
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/13/Python_Feature_2/" itemprop="url">
-              
-                <span itemprop="name">Python函数</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-11-13T21:59:53+08:00" content="2019-11-13">
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/10/21/Leetcode-39/" itemprop="url">
-              
-                <span itemprop="name">LeetCode 39 -- Combination Sum</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-21T21:48:07+08:00" content="2019-10-21">
-          10-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/15/Test-blog/" itemprop="url">
-              
-                <span itemprop="name">就是测试下左下角的妹子</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-15T12:57:18+08:00" content="2019-09-15">
-          09-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <hr>
+<h1 id="对象比较：is-与"><a href="#对象比较：is-与" class="headerlink" title="对象比较：is 与 =="></a>对象比较：is 与 ==</h1><p><code>id()</code>（也就是内存地址）相同就可以is  </p>
+<ul>
+<li>当两个变量指向同一个对象即id相同时，is 表达式的结果为True   </li>
+<li>当各变量指向的对象含有相同内容时，==表达式的结果为True。</li>
+</ul>
+<h1 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h1><p>待续</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/09/15/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-15T12:50:16+08:00" content="2019-09-15">
-          09-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/类/" rel="tag"># 类</a>
+          
+            <a href="/tags/对象/" rel="tag"># 对象</a>
+          
+            <a href="/tags/namedtuple/" rel="tag"># namedtuple</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/13/Python_Feature_1/" rel="next" title="Python整洁之道">
+                <i class="fa fa-chevron-left"></i> Python整洁之道
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -479,6 +444,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -499,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -559,6 +544,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象比较：is-与"><span class="nav-number">1.</span> <span class="nav-text">对象比较：is 与 ==</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串转换"><span class="nav-number">2.</span> <span class="nav-text">字符串转换</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -715,6 +716,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

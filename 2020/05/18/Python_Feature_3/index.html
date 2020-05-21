@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="对象比较：is 与 ==id()（也就是内存地址）相同就可以is    当两个变量指向同一个对象即id相同时，is 表达式的结果为True    当各变量指向的对象含有相同内容时，==表达式的结果为True。  字符串转换待续">
+<meta name="description" content="Python中类与对象知识点">
 <meta name="keywords" content="Python,类,对象,namedtuple">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类和面向对象">
 <meta property="og:url" content="http://yoursite.com/2020/05/18/Python_Feature_3/index.html">
 <meta property="og:site_name" content="Lin-Zhipeng&#39;s Blog">
-<meta property="og:description" content="对象比较：is 与 ==id()（也就是内存地址）相同就可以is    当两个变量指向同一个对象即id相同时，is 表达式的结果为True    当各变量指向的对象含有相同内容时，==表达式的结果为True。  字符串转换待续">
+<meta property="og:description" content="Python中类与对象知识点">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-18T09:21:16.557Z">
+<meta property="og:updated_time" content="2020-05-20T16:40:20.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类和面向对象">
-<meta name="twitter:description" content="对象比较：is 与 ==id()（也就是内存地址）相同就可以is    当两个变量指向同一个对象即id相同时，is 表达式的结果为True    当各变量指向的对象含有相同内容时，==表达式的结果为True。  字符串转换待续">
+<meta name="twitter:description" content="Python中类与对象知识点">
 
 
 
@@ -366,13 +366,46 @@
 
       
         <hr>
-<h1 id="对象比较：is-与"><a href="#对象比较：is-与" class="headerlink" title="对象比较：is 与 =="></a>对象比较：is 与 ==</h1><p><code>id()</code>（也就是内存地址）相同就可以is  </p>
+<p>Python中类与对象知识点   </p>
+<a id="more"></a>
+
+<h2 id="对象比较：is-与"><a href="#对象比较：is-与" class="headerlink" title="对象比较：is 与 =="></a>对象比较：is 与 ==</h2><p><code>id()</code>（也就是内存地址）相同就可以is  </p>
 <ul>
 <li>当两个变量指向同一个对象即id相同时，is 表达式的结果为True   </li>
 <li>当各变量指向的对象含有相同内容时，==表达式的结果为True。</li>
 </ul>
-<h1 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h1><p>待续</p>
+<h2 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h2><p>可以在自己的类中添加__str__函数，当尝试对象转换为字符串时会调用这个方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, color, mileage)</span>:</span></span><br><span class="line">		self.color = color</span><br><span class="line">		self.mileage = mileage</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">f'a <span class="subst">&#123;self.color&#125;</span> car'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_car = Car(<span class="string">'red'</span>, <span class="number">37281</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(my_car)</span><br><span class="line"><span class="string">'a red car'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_car</span><br><span class="line">&lt;__console__.Car object at <span class="number">0x109ca24e0</span>&gt;</span><br></pre></td></tr></table></figure>
 
+<p>在Python 解释器会话中查看对象得到的是对象的_<em>repr__结果。所以得到`&lt;<em>_console</em></em>.Car object at 0x109ca24e0&gt;`,可以修改得到其他输出。<br>像列表和字典这样的容器总是使用__repr__的结果来表示所包含的对象，哪怕对容器本身调用str()也是如此.<br>可以指定str()或者repr()来调用函数。<br>str（）更加清晰 repr更方便程序员调试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> datetime</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>today = datetime.date.today()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>str(today)</span><br><span class="line"><span class="string">'2017-02-02'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>repr(today)</span><br><span class="line"><span class="string">'datetime.date(2017, 2, 2)'</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不提供__str__方法，Python在查找__str__时会回退到__repr__的结果。因此建议总是为自定义类添加__repr__方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> (<span class="string">f'<span class="subst">&#123;self.__class__.__name__&#125;</span>('</span></span><br><span class="line">			<span class="string">f'<span class="subst">&#123;self.color!r&#125;</span>, <span class="subst">&#123;self.mileage!r&#125;</span>)'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里使用!r 转换标志来确保输出字符串使用的是repr(self.color)和repr(self.<br>mileage)，而不是str(self.color)和str(self.mileage)。</p>
+<p>##定义自己的异常类<br>eg 人名验证</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(name)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(name) &lt; <span class="number">10</span>:</span><br><span class="line">		<span class="keyword">raise</span> ValueError</span><br></pre></td></tr></table></figure>
+
+<p>报错时的栈回溯只显示到validata函数名和ValueError的提示，不详细。<br>可以直接定义<code>NameTooShortError</code>异常类型，它扩展自内置的<code>ValueError</code>类。一般情况下自定义异常都是派生自<code>Exception</code>这个异常基类或其他内置的<code>Python</code>异常,如<code>ValueError</code>或<code>TypeError</code>——取决于哪个更合适。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameTooShortError</span><span class="params">(ValueError)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate</span><span class="params">(name)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(name) &lt; <span class="number">10</span>:</span><br><span class="line">		<span class="keyword">raise</span> NameTooShortError(name)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>validate(<span class="string">'jane'</span>)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">	File <span class="string">"&lt;input&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">		validate(<span class="string">'jane'</span>)</span><br><span class="line">	File <span class="string">"&lt;input&gt;"</span>, line <span class="number">3</span>, <span class="keyword">in</span> validate</span><br><span class="line">		<span class="keyword">raise</span> NameTooShortError(name)</span><br><span class="line">NameTooShortError: jane</span><br></pre></td></tr></table></figure>
+
+<p>无论是公开发布Python软件包，还是为公司创建可重用的模块，最好为模块创建一个自定义异常基类，然后从中派生所有其他异常。<br>定义一个基类。其他错误类型会继承这个类。这样用户就可以编写try…except语句来处理软件包中所有的自定义错误，无须手动捕<br>获各个具体的异常：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseValidationError</span><span class="params">(ValueError)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameTooShortError</span><span class="params">(BaseValidationError)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameTooLongError</span><span class="params">(BaseValidationError)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NameTooCuteError</span><span class="params">(BaseValidationError)</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	validate(name)</span><br><span class="line"><span class="keyword">except</span> BaseValidationError <span class="keyword">as</span> err:</span><br><span class="line">	handle_validation_error(err)</span><br></pre></td></tr></table></figure>
+
+<p>，编写自定义异常类能更好地在代码中采纳 “请求原谅比请求许可更容易”（easier to ask<br>for forgiveness than permission，EAFP ）这种Python 式的编程风格。</p>
+<h2 id="克隆对象"><a href="#克隆对象" class="headerlink" title="克隆对象"></a>克隆对象</h2><p>Python 中的赋值语句不会创建对象的副本，而只是将名称绑定到对象上。对于不可变对象也是如此。<br>但为了处理可变对象或可变对象集合，需要一种方法来创建这些对象的“真实副本”或“克隆体”。<br>但是直接调用Python的内置可变容器，如列表、字典<br>和集合，调用对应的工厂函数就能完成复制。但是得到的是<strong>浅复制</strong>的副本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new_list = list(original_list)</span><br><span class="line">new_dict = dict(original_dict)</span><br><span class="line">new_set = set(original_set)</span><br></pre></td></tr></table></figure>
+
+<p><strong>浅复制</strong>是指构建一个新的容器对象，然后<strong>填充原对象中<code>子对象</code>的引用</strong>。本质上浅复制只执行一层，复制过程不会递归，因此不会创建子对象的副本。<br><strong>深复制</strong>是<strong>递归复制</strong>，首先构造一个新的容器对象，然后递归地填充原始对象中子对象的副本。这种方式会遍历整个对象树，以此来创建原对象及其所有子项的完全独立的副本。<br>可以使用<code>copy</code>模块来创建任意Python对象的浅副本和深副本。   </p>
+<ul>
+<li>copy.deepcopy()函数创建深副本   </li>
+<li>copy.copy()函数会创建对象的浅副本。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> copy</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>xs = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>zs = copy.deepcopy(xs)</span><br></pre></td></tr></table></figure>
+
+<p> 创建的浅副本不会克隆子对象，因此副本和原对象并不完全独立。<br> 对象的深副本将递归克隆子对象。副本完全独立于原对象，但创建深副本的速度较慢。<br> 使用copy 模块可以复制任意对象（包括自定义类）。</p>
+<h2 id="namedtuple-的优点"><a href="#namedtuple-的优点" class="headerlink" title="namedtuple 的优点"></a>namedtuple 的优点</h2>
       
     </div>
     
@@ -554,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对象比较：is-与"><span class="nav-number">1.</span> <span class="nav-text">对象比较：is 与 ==</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串转换"><span class="nav-number">2.</span> <span class="nav-text">字符串转换</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象比较：is-与"><span class="nav-number">1.</span> <span class="nav-text">对象比较：is 与 ==</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串转换"><span class="nav-number">2.</span> <span class="nav-text">字符串转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#克隆对象"><span class="nav-number">3.</span> <span class="nav-text">克隆对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#namedtuple-的优点"><span class="nav-number">4.</span> <span class="nav-text">namedtuple 的优点</span></a></li></ol></div>
             
 
           </div>
